@@ -19,6 +19,12 @@ using a [Next.js static export](https://nextjs.org/docs/app/guides/static-export
 4. Verify the live routes and a fresh installation from the public registry before
    announcing a change. A manual **GitHub Pages** run can redeploy the selected branch.
 
+The default **Checks** workflow runs nine focused desktop browser tests plus
+six desktop/mobile Pages checks. The full 114-test browser suite is opt-in via
+**Actions → Checks → Run workflow → Full browser suite**, or `npm test` locally.
+Build, typecheck, lint, and formatting remain required. Superseded Checks runs
+on the same branch are canceled automatically.
+
 The build script derives the owner/repository from `GITHUB_REPOSITORY`, sets the site URL and base path, and handles both project sites and repositories named `OWNER.github.io`. Project builds prefix public artwork, audio, icons, and install commands with the repository path. Metadata uses the complete site URL. The six component routes are generated at build time.
 
 No Next.js server, custom CLI, runtime component package, account, or database is needed. The gallery interactions, docs source display, theme, recording mode, and opt-in sound work in the static site. Use GitHub's repository settings for description/topics/social preview when presentation assets change.

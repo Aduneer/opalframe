@@ -21,7 +21,8 @@
     "record": "node scripts/record.mjs",
     "build:pages": "node scripts/build-pages.mjs",
     "preview:pages": "node scripts/serve-pages.mjs",
-    "test:pages": "playwright test --config playwright.pages.config.ts"
+    "test:pages": "playwright test --config playwright.pages.config.ts",
+    "test:smoke": "playwright test --project desktop --grep @smoke"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",

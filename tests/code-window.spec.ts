@@ -17,39 +17,45 @@ async function expectFocus(page: Page, target: string) {
     .toBeLessThan(1);
 }
 
-test("code blocks, file tabs, and preview targets stay synchronized", async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  const errors: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/components/interactive-code-window");
-  await expect(
-    page.getByRole("tab", { name: "field-note.tsx" }),
-  ).toHaveAttribute("aria-selected", "true");
-  await page.getByRole("button", { name: "Show Details", exact: true }).click();
-  await expect(
-    page.locator('.is-code-step-list button[aria-pressed="true"]'),
-  ).toContainText("Details");
-  await expect(
-    page.locator('.is-code-line[data-highlighted="true"]'),
-  ).toHaveCount(5);
-  await expectFocus(page, ".note-story");
-  await page.getByRole("tab", { name: "field-note.tsx" }).press("End");
-  await expect(page.getByRole("tab", { name: "finish.css" })).toBeFocused();
-  await expect(
-    page.getByRole("button", { name: "Show Finish", exact: true }),
-  ).toHaveAttribute("aria-pressed", "true");
-  await expect(page.locator(".field-note")).toHaveAttribute(
-    "data-finished",
-    "true",
-  );
-  await expectFocus(page, ".field-note");
-  await page.getByRole("tab", { name: "finish.css" }).press("ArrowLeft");
-  await expect(page.getByRole("tab", { name: "field-note.tsx" })).toBeFocused();
-  await expectFocus(page, ".note-header");
-  expect(errors).toEqual([]);
-});
+test(
+  "code blocks, file tabs, and preview targets stay synchronized",
+  { tag: "@smoke" },
+  async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    const errors: string[] = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    await page.goto("/components/interactive-code-window");
+    await expect(
+      page.getByRole("tab", { name: "field-note.tsx" }),
+    ).toHaveAttribute("aria-selected", "true");
+    await page
+      .getByRole("button", { name: "Show Details", exact: true })
+      .click();
+    await expect(
+      page.locator('.is-code-step-list button[aria-pressed="true"]'),
+    ).toContainText("Details");
+    await expect(
+      page.locator('.is-code-line[data-highlighted="true"]'),
+    ).toHaveCount(5);
+    await expectFocus(page, ".note-story");
+    await page.getByRole("tab", { name: "field-note.tsx" }).press("End");
+    await expect(page.getByRole("tab", { name: "finish.css" })).toBeFocused();
+    await expect(
+      page.getByRole("button", { name: "Show Finish", exact: true }),
+    ).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator(".field-note")).toHaveAttribute(
+      "data-finished",
+      "true",
+    );
+    await expectFocus(page, ".field-note");
+    await page.getByRole("tab", { name: "finish.css" }).press("ArrowLeft");
+    await expect(
+      page.getByRole("tab", { name: "field-note.tsx" }),
+    ).toBeFocused();
+    await expectFocus(page, ".note-header");
+    expect(errors).toEqual([]);
+  },
+);
 
 test("code selections reserve space at phone, tablet, and desktop sizes", async ({
   page,

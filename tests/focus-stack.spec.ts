@@ -2,80 +2,84 @@ import { test, expect } from "@playwright/test";
 import path from "node:path";
 import { readFile } from "node:fs/promises";
 
-test("stack selection, expansion, and keyboard exploration keep the canvas stable", async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/components/focus-stack");
-  const stack = page.locator(".is-focus-stack");
-  for (const width of [320, 390, 768, 1440]) {
-    await page.setViewportSize({ width, height: 1000 });
-    const initial = await stack.boundingBox();
-    const tabs = stack.getByRole("tablist", { name: "Choose an image" });
-    await tabs.getByRole("tab", { name: /Soft Orbit/ }).click();
-    await tabs.getByRole("tab", { name: /Soft Orbit/ }).press("ArrowRight");
-    await expect(tabs.getByRole("tab", { name: /Still Water/ })).toBeFocused();
-    await expect(
-      tabs.getByRole("tab", { name: /Still Water/ }),
-    ).toHaveAttribute("aria-selected", "true");
-    await expect(stack.getByRole("tabpanel")).toHaveAccessibleName(
-      /Still Water/,
-    );
-    await tabs.getByRole("tab", { name: /Still Water/ }).press("End");
-    await expect(tabs.getByRole("tab", { name: /Open Air/ })).toBeFocused();
-    await stack
-      .getByRole("button", { name: "Stack the deck", exact: true })
-      .click();
-    await expect(stack).toHaveAttribute("data-expanded", "false");
-    await stack
-      .getByRole("button", { name: "Spread the deck", exact: true })
-      .click();
-    const current = await stack.boundingBox();
-    expect(current!.height).toBeCloseTo(initial!.height, 1);
-    expect(current!.width).toBeCloseTo(initial!.width, 1);
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth - innerWidth,
-      ),
-    ).toBeLessThanOrEqual(1);
-    const fit = await stack.evaluate((el) => {
-      const stage = el
-        .querySelector(".is-focus-stack-stage")!
-        .getBoundingClientRect();
-      return [
-        ...el.querySelectorAll<HTMLElement>(
-          ".is-focus-stack-card:not([hidden])",
+test(
+  "stack selection, expansion, and keyboard exploration keep the canvas stable",
+  { tag: "@smoke" },
+  async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/components/focus-stack");
+    const stack = page.locator(".is-focus-stack");
+    for (const width of [320, 390, 768, 1440]) {
+      await page.setViewportSize({ width, height: 1000 });
+      const initial = await stack.boundingBox();
+      const tabs = stack.getByRole("tablist", { name: "Choose an image" });
+      await tabs.getByRole("tab", { name: /Soft Orbit/ }).click();
+      await tabs.getByRole("tab", { name: /Soft Orbit/ }).press("ArrowRight");
+      await expect(
+        tabs.getByRole("tab", { name: /Still Water/ }),
+      ).toBeFocused();
+      await expect(
+        tabs.getByRole("tab", { name: /Still Water/ }),
+      ).toHaveAttribute("aria-selected", "true");
+      await expect(stack.getByRole("tabpanel")).toHaveAccessibleName(
+        /Still Water/,
+      );
+      await tabs.getByRole("tab", { name: /Still Water/ }).press("End");
+      await expect(tabs.getByRole("tab", { name: /Open Air/ })).toBeFocused();
+      await stack
+        .getByRole("button", { name: "Stack the deck", exact: true })
+        .click();
+      await expect(stack).toHaveAttribute("data-expanded", "false");
+      await stack
+        .getByRole("button", { name: "Spread the deck", exact: true })
+        .click();
+      const current = await stack.boundingBox();
+      expect(current!.height).toBeCloseTo(initial!.height, 1);
+      expect(current!.width).toBeCloseTo(initial!.width, 1);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth - innerWidth,
         ),
-      ].map((card) => {
-        const bounds = card.getBoundingClientRect();
-        return Math.max(stage.left - bounds.left, bounds.right - stage.right);
+      ).toBeLessThanOrEqual(1);
+      const fit = await stack.evaluate((el) => {
+        const stage = el
+          .querySelector(".is-focus-stack-stage")!
+          .getBoundingClientRect();
+        return [
+          ...el.querySelectorAll<HTMLElement>(
+            ".is-focus-stack-card:not([hidden])",
+          ),
+        ].map((card) => {
+          const bounds = card.getBoundingClientRect();
+          return Math.max(stage.left - bounds.left, bounds.right - stage.right);
+        });
       });
+      expect(Math.max(...fit)).toBeLessThanOrEqual(1);
+    }
+    await stack.scrollIntoViewIfNeeded();
+    await page.addScriptTag({
+      path: path.resolve("node_modules/axe-core/axe.min.js"),
     });
-    expect(Math.max(...fit)).toBeLessThanOrEqual(1);
-  }
-  await stack.scrollIntoViewIfNeeded();
-  await page.addScriptTag({
-    path: path.resolve("node_modules/axe-core/axe.min.js"),
-  });
-  const violations = await page.evaluate(async () => {
-    const axe = (
-      window as unknown as {
-        axe: {
-          run: (
-            element: Element,
-            options: object,
-          ) => Promise<{ violations: { id: string }[] }>;
-        };
-      }
-    ).axe;
-    return (
-      await axe.run(document.querySelector(".is-focus-stack")!, {
-        runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa"] },
-      })
-    ).violations;
-  });
-  expect(violations).toEqual([]);
-});
+    const violations = await page.evaluate(async () => {
+      const axe = (
+        window as unknown as {
+          axe: {
+            run: (
+              element: Element,
+              options: object,
+            ) => Promise<{ violations: { id: string }[] }>;
+          };
+        }
+      ).axe;
+      return (
+        await axe.run(document.querySelector(".is-focus-stack")!, {
+          runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa"] },
+        })
+      ).violations;
+    });
+    expect(violations).toEqual([]);
+  },
+);
 
 test("back cards select on pointer or touch and customization preserves the selection", async ({
   page,

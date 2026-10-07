@@ -95,54 +95,59 @@ test("background clicks do not dismiss the opening and explicit entry removes th
   await expect(notes).toHaveAttribute("aria-pressed", "true");
 });
 
-test("motion preference, anchors, and no-script loading bypass the runway", async ({
-  page,
-  browser,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/", { waitUntil: "networkidle" });
-  await expect(page.locator(".studio-opening")).toHaveAttribute(
-    "data-studio-state",
-    "clear",
-  );
-  expect(await runwayHeight(page)).toBe(0);
-  await expect(page.locator(".studio-page")).not.toHaveAttribute("inert");
-  await page.emulateMedia({ reducedMotion: "no-preference" });
-  await page.goto("/#components", { waitUntil: "networkidle" });
-  await expect(page.locator(".studio-opening")).toBeHidden();
-  expect(await runwayHeight(page)).toBe(0);
-  await page.goto("/", { waitUntil: "networkidle" });
-  const distance = await runwayHeight(page);
-  await page.evaluate(
-    (y) => scrollTo({ top: y, behavior: "instant" }),
-    distance * 0.4,
-  );
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(page.locator(".studio-opening")).toBeHidden();
-  expect(await runwayHeight(page)).toBe(0);
-  expect((await page.locator(".studio-page").boundingBox())!.y).toBeCloseTo(
-    0,
-    0,
-  );
-  const context = await browser.newContext({
-    javaScriptEnabled: false,
-    viewport: { width: 320, height: 844 },
-  });
-  try {
-    const fallback = await context.newPage();
-    await fallback.goto("http://127.0.0.1:3000/");
-    await expect(fallback.locator(".studio-opening")).toBeHidden();
-    expect(await runwayHeight(fallback)).toBe(0);
-    await expect(fallback.locator(".gallery-study")).toHaveCount(6);
-    await fallback
-      .getByRole("link", { name: "Get Expandable Dock source", exact: true })
-      .click();
-    await expect(fallback).toHaveURL(/\/components\/expandable-dock/);
-  } finally {
-    await context.close();
-  }
-  await page.goto("/components/expandable-dock");
-  await expect(page.locator(".studio-experience")).toHaveCount(0);
-  await page.goto("/showcase");
-  await expect(page.locator(".studio-experience")).toHaveCount(0);
-});
+test(
+  "motion preference, anchors, and no-script loading bypass the runway",
+  { tag: "@smoke" },
+  async ({ page, browser, baseURL }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/", { waitUntil: "networkidle" });
+    await expect(page.locator(".studio-opening")).toHaveAttribute(
+      "data-studio-state",
+      "clear",
+    );
+    expect(await runwayHeight(page)).toBe(0);
+    await expect(page.locator(".studio-page")).not.toHaveAttribute("inert");
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.goto("/#components", { waitUntil: "networkidle" });
+    await expect(page.locator(".studio-opening")).toBeHidden();
+    expect(await runwayHeight(page)).toBe(0);
+    await page.goto("/", { waitUntil: "networkidle" });
+    const distance = await runwayHeight(page);
+    await page.evaluate(
+      (y) => scrollTo({ top: y, behavior: "instant" }),
+      distance * 0.4,
+    );
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    // CSS hides the runway before matchMedia delivers its change event. Wait for
+    // bypass() to remove the enabled state and restore the content position.
+    await expect(page.locator(".studio-experience")).not.toHaveAttribute(
+      "data-studio-enabled",
+    );
+    await expect(page.locator(".studio-opening")).toBeHidden();
+    expect(await runwayHeight(page)).toBe(0);
+    await expect
+      .poll(async () => (await page.locator(".studio-page").boundingBox())!.y)
+      .toBeCloseTo(0, 0);
+    const context = await browser.newContext({
+      javaScriptEnabled: false,
+      viewport: { width: 320, height: 844 },
+    });
+    try {
+      const fallback = await context.newPage();
+      await fallback.goto(baseURL!);
+      await expect(fallback.locator(".studio-opening")).toBeHidden();
+      expect(await runwayHeight(fallback)).toBe(0);
+      await expect(fallback.locator(".gallery-study")).toHaveCount(6);
+      await fallback
+        .getByRole("link", { name: "Get Expandable Dock source", exact: true })
+        .click();
+      await expect(fallback).toHaveURL(/\/components\/expandable-dock/);
+    } finally {
+      await context.close();
+    }
+    await page.goto("/components/expandable-dock");
+    await expect(page.locator(".studio-experience")).toHaveCount(0);
+    await page.goto("/showcase");
+    await expect(page.locator(".studio-experience")).toHaveCount(0);
+  },
+);

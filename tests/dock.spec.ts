@@ -1,45 +1,49 @@
 import { test, expect } from "@playwright/test";
 
-test("dock focus explores labels without changing the current page", async ({
-  page,
-}) => {
-  const errors: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
-  page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text());
-  });
-  await page.goto("/components/expandable-dock");
-  const dock = page.getByRole("navigation", { name: "Studio navigation" });
-  const work = dock.getByRole("button", { name: "Work", exact: true });
-  const notes = dock.getByRole("button", { name: "Notes", exact: true });
-  await work.focus();
-  await work.press("ArrowRight");
-  await expect(notes).toBeFocused();
-  await expect(notes).toHaveAttribute("data-expanded", "true");
-  await expect(work).toHaveAttribute("aria-pressed", "true");
-  await expect(
-    page.getByRole("heading", { name: /A different/ }),
-  ).toBeVisible();
-  await notes.press("Enter");
-  await expect(notes).toHaveAttribute("aria-pressed", "true");
-  await expect(page.getByRole("heading", { name: /Notes from/ })).toBeVisible();
-  await notes.press("End");
-  const contact = dock.getByRole("button", { name: "Contact", exact: true });
-  await expect(contact).toBeFocused();
-  await contact.press("ArrowRight");
-  await expect(work).toBeFocused();
-  await work.press("ArrowLeft");
-  await expect(contact).toBeFocused();
-  await contact.press("Home");
-  await expect(work).toBeFocused();
-  await work.press("Tab");
-  await expect(notes).toBeFocused();
-  await notes.press("Tab");
-  await expect(
-    dock.getByRole("button", { name: "About", exact: true }),
-  ).toBeFocused();
-  expect(errors).toEqual([]);
-});
+test(
+  "dock focus explores labels without changing the current page",
+  { tag: "@smoke" },
+  async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    page.on("console", (message) => {
+      if (message.type() === "error") errors.push(message.text());
+    });
+    await page.goto("/components/expandable-dock");
+    const dock = page.getByRole("navigation", { name: "Studio navigation" });
+    const work = dock.getByRole("button", { name: "Work", exact: true });
+    const notes = dock.getByRole("button", { name: "Notes", exact: true });
+    await work.focus();
+    await work.press("ArrowRight");
+    await expect(notes).toBeFocused();
+    await expect(notes).toHaveAttribute("data-expanded", "true");
+    await expect(work).toHaveAttribute("aria-pressed", "true");
+    await expect(
+      page.getByRole("heading", { name: /A different/ }),
+    ).toBeVisible();
+    await notes.press("Enter");
+    await expect(notes).toHaveAttribute("aria-pressed", "true");
+    await expect(
+      page.getByRole("heading", { name: /Notes from/ }),
+    ).toBeVisible();
+    await notes.press("End");
+    const contact = dock.getByRole("button", { name: "Contact", exact: true });
+    await expect(contact).toBeFocused();
+    await contact.press("ArrowRight");
+    await expect(work).toBeFocused();
+    await work.press("ArrowLeft");
+    await expect(contact).toBeFocused();
+    await contact.press("Home");
+    await expect(work).toBeFocused();
+    await work.press("Tab");
+    await expect(notes).toBeFocused();
+    await notes.press("Tab");
+    await expect(
+      dock.getByRole("button", { name: "About", exact: true }),
+    ).toBeFocused();
+    expect(errors).toEqual([]);
+  },
+);
 
 test("hover or touch keeps a single current destination", async ({
   page,

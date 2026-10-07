@@ -146,40 +146,42 @@ test("release panels reserve their space when inspecting each stage", async ({
   }
 });
 
-test("failed releases keep the previous version live and can retry", async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/components/release-rail");
-  await page.getByLabel("Deployment scenario").selectOption("failure");
-  await page.getByRole("button", { name: "Replay deployment" }).click();
-  await expect(page.getByText("Blocked", { exact: true })).toBeVisible();
-  const panel = page.getByRole("region", { name: "Checks details" });
-  await expect(panel).toContainText("Caught before production.");
-  await expect(panel).toContainText("Missing required prop: currency");
-  await expect(panel).toContainText("Previous version stays live");
-  await expect(panel).toContainText("v1.0.2");
-  await expect(page.getByRole("button", { name: /Deploy/ })).toContainText(
-    "pending",
-  );
-  await page.addScriptTag({
-    path: path.resolve("node_modules/axe-core/axe.min.js"),
-  });
-  for (const theme of ["dark", "light"]) {
-    await page.evaluate((theme) => {
-      document.documentElement.dataset.theme = theme;
-    }, theme);
-    expect(
-      await accessibilityViolations(page),
-      `Failed release in ${theme}`,
-    ).toEqual([]);
-  }
-  await page.getByRole("button", { name: "Retry checks" }).click();
-  await expect(page.getByText("Ready", { exact: true })).toBeVisible();
-  const deployed = page.getByRole("region", { name: "Deploy details" });
-  await expect(deployed).toContainText("New version is live");
-  await expect(deployed).toContainText("v1.0.3");
-});
+test(
+  "failed releases keep the previous version live and can retry",
+  { tag: "@smoke" },
+  async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/components/release-rail");
+    await page.getByLabel("Deployment scenario").selectOption("failure");
+    await page.getByRole("button", { name: "Replay deployment" }).click();
+    await expect(page.getByText("Blocked", { exact: true })).toBeVisible();
+    const panel = page.getByRole("region", { name: "Checks details" });
+    await expect(panel).toContainText("Caught before production.");
+    await expect(panel).toContainText("Missing required prop: currency");
+    await expect(panel).toContainText("Previous version stays live");
+    await expect(panel).toContainText("v1.0.2");
+    await expect(page.getByRole("button", { name: /Deploy/ })).toContainText(
+      "pending",
+    );
+    await page.addScriptTag({
+      path: path.resolve("node_modules/axe-core/axe.min.js"),
+    });
+    for (const theme of ["dark", "light"]) {
+      await page.evaluate((theme) => {
+        document.documentElement.dataset.theme = theme;
+      }, theme);
+      expect(
+        await accessibilityViolations(page),
+        `Failed release in ${theme}`,
+      ).toEqual([]);
+    }
+    await page.getByRole("button", { name: "Retry checks" }).click();
+    await expect(page.getByText("Ready", { exact: true })).toBeVisible();
+    const deployed = page.getByRole("region", { name: "Deploy details" });
+    await expect(deployed).toContainText("New version is live");
+    await expect(deployed).toContainText("v1.0.3");
+  },
+);
 
 test("recording backdrops change the canvas independently of the demo theme", async ({
   page,
@@ -255,57 +257,67 @@ test("every recording aspect ratio fits the full demo inside the frame", async (
   }
 });
 
-test("product story supports selection and keyboard navigation without hydration errors", async ({
-  page,
-}) => {
-  const errors: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
-  page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text());
-  });
-  await page.goto("/");
-  await enterStudio(page);
-  const first = page.getByRole("tab", { name: /The big picture/ });
-  await expect(first).toHaveAttribute("aria-selected", "true");
-  await page.getByRole("tab", { name: /A closer look/ }).click();
-  await expect(page.locator(".is-stage-body")).toContainText("Guide attention");
-  await page.getByRole("tab", { name: /A closer look/ }).press("ArrowRight");
-  await expect(page.getByRole("tab", { name: /The next move/ })).toBeFocused();
-  await expect(
-    page.getByRole("tab", { name: /The next move/ }),
-  ).toHaveAttribute("aria-selected", "true");
-  await page.getByRole("tab", { name: /The next move/ }).press("Home");
-  await expect(first).toBeFocused();
-  await expect(page.locator(".is-stage-focus")).toHaveCSS("left", /.+px/);
-  expect(errors).toEqual([]);
-});
-
-test("comparison supports touch or pointer and keyboard and descriptive values", async ({
-  page,
-  isMobile,
-}) => {
-  await page.goto("/components/comparison-lens");
-  const slider = page.getByRole("slider");
-  await expect(slider).toHaveValue("58");
-  await slider.focus();
-  await slider.press("ArrowRight");
-  await expect(slider).toHaveValue("59");
-  await slider.press("Home");
-  await expect(slider).toHaveValue("0");
-  await slider.press("End");
-  await expect(slider).toHaveValue("100");
-  const box = await slider.boundingBox();
-  if (!box) throw new Error("Missing comparison bounds");
-  if (isMobile)
-    await page.touchscreen.tap(
-      box.x + box.width * 0.25,
-      box.y + box.height * 0.5,
+test(
+  "product story supports selection and keyboard navigation without hydration errors",
+  { tag: "@smoke" },
+  async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    page.on("console", (message) => {
+      if (message.type() === "error") errors.push(message.text());
+    });
+    await page.goto("/");
+    await enterStudio(page);
+    const first = page.getByRole("tab", { name: /The big picture/ });
+    await expect(first).toHaveAttribute("aria-selected", "true");
+    await page.getByRole("tab", { name: /A closer look/ }).click();
+    await expect(page.locator(".is-stage-body")).toContainText(
+      "Guide attention",
     );
-  else
-    await page.mouse.click(box.x + box.width * 0.25, box.y + box.height * 0.5);
-  await expect(slider).toHaveValue(/2[34567]/);
-  await expect(slider).toHaveAttribute("aria-valuetext", /Refined/);
-});
+    await page.getByRole("tab", { name: /A closer look/ }).press("ArrowRight");
+    await expect(
+      page.getByRole("tab", { name: /The next move/ }),
+    ).toBeFocused();
+    await expect(
+      page.getByRole("tab", { name: /The next move/ }),
+    ).toHaveAttribute("aria-selected", "true");
+    await page.getByRole("tab", { name: /The next move/ }).press("Home");
+    await expect(first).toBeFocused();
+    await expect(page.locator(".is-stage-focus")).toHaveCSS("left", /.+px/);
+    expect(errors).toEqual([]);
+  },
+);
+
+test(
+  "comparison supports touch or pointer and keyboard and descriptive values",
+  { tag: "@smoke" },
+  async ({ page, isMobile }) => {
+    await page.goto("/components/comparison-lens");
+    const slider = page.getByRole("slider");
+    await expect(slider).toHaveValue("58");
+    await slider.focus();
+    await slider.press("ArrowRight");
+    await expect(slider).toHaveValue("59");
+    await slider.press("Home");
+    await expect(slider).toHaveValue("0");
+    await slider.press("End");
+    await expect(slider).toHaveValue("100");
+    const box = await slider.boundingBox();
+    if (!box) throw new Error("Missing comparison bounds");
+    if (isMobile)
+      await page.touchscreen.tap(
+        box.x + box.width * 0.25,
+        box.y + box.height * 0.5,
+      );
+    else
+      await page.mouse.click(
+        box.x + box.width * 0.25,
+        box.y + box.height * 0.5,
+      );
+    await expect(slider).toHaveValue(/2[34567]/);
+    await expect(slider).toHaveAttribute("aria-valuetext", /Refined/);
+  },
+);
 
 test("release states are inspectable and replay completes", async ({
   page,
@@ -377,56 +389,60 @@ test("recording mode respects ratios, hides controls, and returns with Escape", 
   expect(overflow).toBeLessThanOrEqual(1);
 });
 
-test("all pages pass automated accessibility checks in both themes", async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  for (const route of [
-    "/",
-    "/components/product-stage",
-    "/components/release-rail",
-    "/components/comparison-lens",
-    "/components/interactive-code-window",
-    "/components/expandable-dock",
-    "/components/focus-stack",
-    "/showcase",
-  ]) {
-    await page.goto(route);
-    await page.addScriptTag({
-      path: path.resolve("node_modules/axe-core/axe.min.js"),
-    });
-    for (const theme of ["dark", "light"]) {
-      await page.evaluate((theme) => {
-        document.documentElement.dataset.theme = theme;
-      }, theme);
-      const violations = await accessibilityViolations(page);
-      expect(violations, `${route} ${theme}`).toEqual([]);
+test(
+  "all pages pass automated accessibility checks in both themes",
+  { tag: "@smoke" },
+  async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    for (const route of [
+      "/",
+      "/components/product-stage",
+      "/components/release-rail",
+      "/components/comparison-lens",
+      "/components/interactive-code-window",
+      "/components/expandable-dock",
+      "/components/focus-stack",
+      "/showcase",
+    ]) {
+      await page.goto(route);
+      await page.addScriptTag({
+        path: path.resolve("node_modules/axe-core/axe.min.js"),
+      });
+      for (const theme of ["dark", "light"]) {
+        await page.evaluate((theme) => {
+          document.documentElement.dataset.theme = theme;
+        }, theme);
+        const violations = await accessibilityViolations(page);
+        expect(violations, `${route} ${theme}`).toEqual([]);
+      }
     }
-  }
-});
+  },
+);
 
-test("registry distributes current source and stylesheet together", async ({
-  request,
-}) => {
-  for (const name of [
-    "product-stage",
-    "release-rail",
-    "comparison-lens",
-    "interactive-code-window",
-    "expandable-dock",
-    "focus-stack",
-  ]) {
-    const response = await request.get(`/r/${name}.json`);
-    expect(response.ok()).toBe(true);
-    const registry = await response.json();
-    expect(registry.files).toHaveLength(2);
-    expect(registry.files[0].content).toContain(`import "./${name}.css"`);
-    expect(registry.files[1].target).toBe(`@ui/${name}.css`);
-    expect(registry.files[0].content).toBe(
-      await readFile(path.resolve(`packages/components/${name}.tsx`), "utf8"),
-    );
-    expect(registry.files[1].content).toBe(
-      await readFile(path.resolve(`packages/components/${name}.css`), "utf8"),
-    );
-  }
-});
+test(
+  "registry distributes current source and stylesheet together",
+  { tag: "@smoke" },
+  async ({ request }) => {
+    for (const name of [
+      "product-stage",
+      "release-rail",
+      "comparison-lens",
+      "interactive-code-window",
+      "expandable-dock",
+      "focus-stack",
+    ]) {
+      const response = await request.get(`/r/${name}.json`);
+      expect(response.ok()).toBe(true);
+      const registry = await response.json();
+      expect(registry.files).toHaveLength(2);
+      expect(registry.files[0].content).toContain(`import "./${name}.css"`);
+      expect(registry.files[1].target).toBe(`@ui/${name}.css`);
+      expect(registry.files[0].content).toBe(
+        await readFile(path.resolve(`packages/components/${name}.tsx`), "utf8"),
+      );
+      expect(registry.files[1].content).toBe(
+        await readFile(path.resolve(`packages/components/${name}.css`), "utf8"),
+      );
+    }
+  },
+);

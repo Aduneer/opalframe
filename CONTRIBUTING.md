@@ -45,6 +45,15 @@ npm run build
 npm test
 ```
 
+The default GitHub Checks workflow runs `npm run test:smoke`: nine desktop
+checks covering all six component interactions, registry contents, both-theme
+accessibility, and the reduced-motion opening. The six static Pages checks still
+run on desktop and mobile. Use **Actions → Checks → Run workflow → Full browser
+suite** for all 114 browser checks, or run `npm test` locally. New pushes cancel
+older Checks runs on the same branch.
+
+If port 3000 is occupied, set `OPALFRAME_TEST_PORT=3100` when running browser tests.
+
 Test one browser file with `npx playwright test tests/gallery.spec.ts`, or a named case with `--grep`. For routing, public assets, or installation URLs, also run `npm run build:pages` and `npm run test:pages`; GitHub Pages serves a static export under the repository path. [DEPLOYMENT.md](DEPLOYMENT.md) explains that setup.
 
 Keep changes focused. Describe the problem and resulting behavior, show a preview where useful, and state what you actually verified. Do not promise compatibility, adoption, or performance you have not checked. The component sources currently require only React; keep that portability.
