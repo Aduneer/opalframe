@@ -1,0 +1,247 @@
+.is-focus-stack {
+  --stack-accent: var(--accent, #aacfff);
+  --stack-text: var(--text, #f0f3f8);
+  --stack-muted: var(--muted, #adb7c6);
+  --stack-line: var(--line, #343d4a);
+  --stack-surface: var(--surface, #181d25);
+  --stack-card-width: clamp(120px, 46cqw, 280px);
+  --stack-spread: 16px;
+  width: 100%;
+  min-width: 0;
+  container-type: inline-size;
+  color: var(--stack-text);
+}
+.is-focus-stack-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  font-size: 12px;
+}
+.is-focus-stack-heading > span > span {
+  margin-left: 12px;
+  color: var(--stack-muted);
+  font:
+    10px ui-monospace,
+    monospace;
+  white-space: nowrap;
+}
+.is-focus-stack-heading > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 10px;
+  border: 1px solid var(--stack-line);
+  border-radius: 6px;
+  color: var(--stack-muted);
+  background: transparent;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.is-focus-stack-stage {
+  position: relative;
+  height: calc(var(--stack-card-width) / var(--stack-ratio) + 100px);
+  isolation: isolate;
+  perspective: 1000px;
+  border-radius: 14px;
+}
+.is-focus-stack[data-expanded="true"] .is-focus-stack-stage {
+  --stack-spread: clamp(
+    0px,
+    calc((100cqw - var(--stack-card-width) - 44px) / var(--stack-spread-steps)),
+    140px
+  );
+}
+.is-focus-stack-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--stack-card-width);
+  height: calc(var(--stack-card-width) / var(--stack-ratio));
+  aspect-ratio: var(--stack-ratio);
+  padding: 4px;
+  border: 1px solid color-mix(in srgb, var(--stack-text) 30%, transparent);
+  border-radius: 15px;
+  background: color-mix(in srgb, var(--stack-surface) 88%, transparent);
+  color: var(--stack-text);
+  box-shadow:
+    0 4px 8px #00000010,
+    0 22px 38px -20px #00000055;
+  transform: translate(-50%, -50%)
+    translateX(calc(var(--stack-offset) * var(--stack-spread)))
+    translateY(calc(var(--stack-distance) * -10px))
+    rotate(calc(var(--stack-offset) * 7deg))
+    rotateY(calc(var(--stack-offset) * -8deg))
+    scale(calc(1 - var(--stack-distance) * 0.06));
+  transition:
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 200ms,
+    box-shadow 250ms;
+  cursor: pointer;
+}
+.is-focus-stack-card[hidden] {
+  display: none;
+}
+.is-focus-stack-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+.is-focus-stack-card::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 10px;
+  background: linear-gradient(
+    125deg,
+    #ffffff30,
+    transparent 35%,
+    transparent 70%,
+    #ffffff18
+  );
+  pointer-events: none;
+}
+.is-focus-stack-card[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--stack-accent) 65%, var(--stack-line));
+  box-shadow:
+    0 5px 12px #00000012,
+    0 32px 54px -26px #00000070;
+}
+.is-focus-stack-card:hover {
+  border-color: var(--stack-accent);
+}
+.is-focus-stack-card-label {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #ffffff35;
+  border-radius: 6px;
+  background: var(--stack-surface);
+  color: var(--stack-text);
+  font:
+    11px system-ui,
+    sans-serif;
+}
+.is-focus-stack-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.is-focus-stack-tabs button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--stack-muted);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.is-focus-stack-tabs button > span {
+  font:
+    9px ui-monospace,
+    monospace;
+  color: inherit;
+}
+.is-focus-stack-tabs button[aria-selected="true"] {
+  background: var(--stack-selected, var(--stack-surface));
+  border-color: var(--stack-line);
+  color: var(--stack-text);
+}
+.is-focus-stack-caption {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 18px;
+  color: var(--stack-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.is-focus-stack-descriptions {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+.is-focus-stack-descriptions > p {
+  grid-area: 1/1;
+  margin: 0;
+}
+.is-focus-stack-descriptions > p[data-active="false"] {
+  visibility: hidden;
+}
+.is-focus-stack-caption a {
+  flex-shrink: 0;
+  color: var(--stack-text);
+  text-decoration: none;
+}
+.is-focus-stack-caption a > span {
+  margin-left: 6px;
+  color: var(--stack-accent);
+}
+.is-focus-stack-link {
+  min-height: 1.7em;
+  flex-shrink: 0;
+}
+.is-focus-stack button:focus-visible,
+.is-focus-stack a:focus-visible,
+.is-focus-stack-stage:focus-visible {
+  outline: 2px solid var(--stack-accent);
+  outline-offset: 4px;
+}
+.is-focus-stack-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@container (max-width: 380px) {
+  .is-focus-stack-heading {
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 11px;
+  }
+  .is-focus-stack-caption {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .is-focus-stack-tabs button {
+    font-size: 11px;
+    padding: 9px;
+  }
+  .is-focus-stack-card-label {
+    padding: 7px;
+    font-size: 9px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+  }
+}
+.is-focus-stack[data-reduced-motion] * {
+  transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .is-focus-stack * {
+    transition: none !important;
+  }
+}

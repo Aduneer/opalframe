@@ -1,0 +1,53 @@
+# Dependencies and generated builds
+node_modules/
+.next*/
+out/
+dist/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+.pages-build.json
+
+# Local configuration; keep the documented public-variable example
+.env
+.env.*
+!.env.example
+
+# Local agent instructions and working notes
+AGENTS.md
+CLAUDE.md
+.agents/
+.codex/
+/TODO.md
+/DESIGN-PLAN.md
+/NAMING.md
+
+# Logs, caches, browser reports, and editor/OS files
+*.log
+.cache/
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+*.swo
+test-results/
+playwright-report/
+blob-report/
+
+# Keep web assets and finished presentation clips; omit production sources
+artifacts/clips/.raw/
+artifacts/presentation/.raw/
+/artifacts/blender/
+/artifacts/audio/*
+!/artifacts/audio/README.md
+!/artifacts/audio/quiet-01-analysis.json
+__pycache__/
+
+# Local credentials and editor state
+.ssh/
+.aws/
+.vscode/
+*.pem
+*.key
+*.p12
+*.pfx

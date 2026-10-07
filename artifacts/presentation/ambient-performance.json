@@ -1,0 +1,51 @@
+{
+  "cpuThrottle": 4,
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "cumulativeLayoutShift": 0,
+  "pointerSamples": 40,
+  "pointerUpdateP95Ms": 10.599999999627471,
+  "twoSecondMainThreadTaskMs": {
+    "ambientRunning": 75.01000000000025,
+    "ambientPaused": 0.7519999999998639
+  },
+  "artwork": [
+    {
+      "file": "ribbon-charcoal.webp",
+      "encodedBytes": 48476
+    },
+    {
+      "file": "ribbon-charcoal-reflection.webp",
+      "encodedBytes": 49768
+    },
+    {
+      "file": "ribbon-pearl.webp",
+      "encodedBytes": 44778
+    },
+    {
+      "file": "ribbon-pearl-reflection.webp",
+      "encodedBytes": 45930
+    }
+  ],
+  "loadedArtwork": [
+    {
+      "file": "ribbon-charcoal.webp",
+      "encodedBytes": 48476
+    },
+    {
+      "file": "ribbon-pearl.webp",
+      "encodedBytes": 44778
+    },
+    {
+      "file": "ribbon-charcoal.webp",
+      "encodedBytes": 48476
+    },
+    {
+      "file": "ribbon-charcoal-reflection.webp",
+      "encodedBytes": 49768
+    }
+  ],
+  "notes": "Local production build, simulated 4x CPU throttling. Pointer latency is event timestamp to style update, not input-to-screen. TaskDuration is a short local observation, not a physical-device or frame-rate benchmark. Ambient movement is CSS transform/opacity and pauses off-screen, hidden, unfocused, or by user preference."
+}

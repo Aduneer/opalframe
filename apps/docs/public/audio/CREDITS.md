@@ -1,0 +1,29 @@
+# Quiet 01
+
+Original procedural ambient composition authored for Opalframe with Codex. Copyright (c) 2026 Opalframe contributors. No external tracks, samples, voices, or field recordings are used.
+
+The 72-second stereo FLAC loop is exported from the unfaded master at a quiet −29 LUFS. Source: `scripts/audio/render-audition.py` in the Opalframe repository. Audition, lossless master, measurements, and reproduction instructions: `artifacts/audio/`.
+
+Composition, source, and exports are licensed under MIT:
+
+MIT License
+
+Copyright (c) 2026 Opalframe contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

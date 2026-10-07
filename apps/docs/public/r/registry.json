@@ -1,0 +1,121 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "opalframe",
+  "homepage": "https://aduneer.github.io/opalframe",
+  "items": [
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "product-stage",
+      "type": "registry:ui",
+      "title": "Product Stage",
+      "description": "Portable product-stage interaction. React and CSS; no animation dependencies.",
+      "files": [
+        {
+          "path": "packages/components/product-stage.tsx",
+          "type": "registry:ui",
+          "target": "@ui/product-stage.tsx"
+        },
+        {
+          "path": "packages/components/product-stage.css",
+          "type": "registry:file",
+          "target": "@ui/product-stage.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "release-rail",
+      "type": "registry:ui",
+      "title": "Release Rail",
+      "description": "Portable release-rail interaction. React and CSS; no animation dependencies.",
+      "files": [
+        {
+          "path": "packages/components/release-rail.tsx",
+          "type": "registry:ui",
+          "target": "@ui/release-rail.tsx"
+        },
+        {
+          "path": "packages/components/release-rail.css",
+          "type": "registry:file",
+          "target": "@ui/release-rail.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "comparison-lens",
+      "type": "registry:ui",
+      "title": "Comparison Lens",
+      "description": "Portable comparison-lens interaction. React and CSS; no animation dependencies.",
+      "files": [
+        {
+          "path": "packages/components/comparison-lens.tsx",
+          "type": "registry:ui",
+          "target": "@ui/comparison-lens.tsx"
+        },
+        {
+          "path": "packages/components/comparison-lens.css",
+          "type": "registry:file",
+          "target": "@ui/comparison-lens.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "interactive-code-window",
+      "type": "registry:ui",
+      "title": "Interactive Code Window",
+      "description": "Portable interactive-code-window interaction. React and CSS; no animation dependencies.",
+      "files": [
+        {
+          "path": "packages/components/interactive-code-window.tsx",
+          "type": "registry:ui",
+          "target": "@ui/interactive-code-window.tsx"
+        },
+        {
+          "path": "packages/components/interactive-code-window.css",
+          "type": "registry:file",
+          "target": "@ui/interactive-code-window.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "expandable-dock",
+      "type": "registry:ui",
+      "title": "Expandable Dock",
+      "description": "Portable expandable-dock interaction. React and CSS; no animation dependencies.",
+      "files": [
+        {
+          "path": "packages/components/expandable-dock.tsx",
+          "type": "registry:ui",
+          "target": "@ui/expandable-dock.tsx"
+        },
+        {
+          "path": "packages/components/expandable-dock.css",
+          "type": "registry:file",
+          "target": "@ui/expandable-dock.css"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "focus-stack",
+      "type": "registry:ui",
+      "title": "Focus Stack",
+      "description": "Portable focus-stack interaction. React and CSS; no animation dependencies.",
+      "files": [
+        {
+          "path": "packages/components/focus-stack.tsx",
+          "type": "registry:ui",
+          "target": "@ui/focus-stack.tsx"
+        },
+        {
+          "path": "packages/components/focus-stack.css",
+          "type": "registry:file",
+          "target": "@ui/focus-stack.css"
+        }
+      ]
+    }
+  ]
+}

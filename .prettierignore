@@ -1,0 +1,14 @@
+node_modules
+**/.next*/**
+**/out/**
+**/.pages-build.json
+package-lock.json
+apps/docs/public/r
+test-results
+playwright-report
+artifacts/clips/.raw
+*.tsbuildinfo
+
+artifacts/presentation/.raw
+artifacts/blender/.orbit
+**/__pycache__

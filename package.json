@@ -1,0 +1,47 @@
+{
+  "name": "opalframe-workspace",
+  "private": true,
+  "workspaces": [
+    "apps/docs"
+  ],
+  "scripts": {
+    "dev": "npm run registry && npm run dev --workspace apps/docs",
+    "build": "npm run registry && npm run build --workspace apps/docs",
+    "start": "npm run start --workspace apps/docs",
+    "typecheck": "tsc --noEmit -p apps/docs/tsconfig.json",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "registry": "node scripts/build-registry.mjs",
+    "test": "playwright test",
+    "capture": "node scripts/capture.mjs",
+    "capture:presentation": "node scripts/capture-presentation.mjs",
+    "record:presentation": "node scripts/record-presentation.mjs",
+    "record:launch": "node scripts/record-launch.mjs",
+    "record": "node scripts/record.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
+    "preview:pages": "node scripts/serve-pages.mjs",
+    "test:pages": "playwright test --config playwright.pages.config.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "axe-core": "4.11.0",
+    "eslint": "9.39.2",
+    "eslint-config-next": "16.3.8",
+    "prettier": "3.8.0",
+    "typescript": "5.9.3"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "description": "Copy-paste React components with measured interactions and scoped CSS.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aduneer/opalframe.git"
+  },
+  "homepage": "https://aduneer.github.io/opalframe/",
+  "bugs": {
+    "url": "https://github.com/Aduneer/opalframe/issues"
+  }
+}

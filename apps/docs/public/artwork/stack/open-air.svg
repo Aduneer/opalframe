@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="800" viewBox="0 0 640 800">
+<title>Open Air — an original architectural glass study</title>
+<defs><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#eceff6"/><stop offset="1" stop-color="#cbd1df"/></linearGradient><linearGradient id="face" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fdfdff" stop-opacity=".85"/><stop offset="1" stop-color="#99acc9" stop-opacity=".35"/></linearGradient><linearGradient id="edge" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".5" stop-color="#97a7bd"/><stop offset="1" stop-color="#e7f3ff"/></linearGradient></defs>
+<rect width="640" height="800" fill="url(#paper)"/>
+<g stroke="#9ca9be" stroke-opacity=".3" fill="none"><path d="M40 70h560M40 720h560M105 470l215 104 215-104M105 420l215 104 215-104"/></g>
+<ellipse cx="320" cy="515" rx="192" ry="18" fill="#687d99" opacity=".12"/>
+<g stroke="url(#edge)" stroke-width="2"><path d="M145 213l170-83 180 94-174 86z" fill="#f5f7fc" fill-opacity=".6"/><path d="M145 213v246l176 94V310z" fill="url(#face)"/><path d="M321 310l174-86v240l-174 89z" fill="#91abc4" fill-opacity=".25"/><path d="M214 259v176l108 55 107-53V258l-106-54z" fill="url(#face)"/></g>
+<g stroke="#eff7ff" stroke-width="2" fill="none" opacity=".75"><path d="M145 291l176 93 174-87M145 375l176 94 174-88M215 259l107 57 108-58M321 311v241"/></g>
+<g fill="#40536e" font-family="Arial,sans-serif"><text x="42" y="50" font-size="13" letter-spacing="3">OPALFRAME / SPATIAL STUDIES</text><text x="42" y="659" font-size="64" letter-spacing="-4">Open Air.</text><text x="45" y="690" font-size="16">Structure with room to breathe.</text><text x="42" y="756" font-size="12" letter-spacing="2">SPACE / PORCELAIN / LIGHT</text><text x="570" y="756" font-size="12">03</text></g>
+</svg>

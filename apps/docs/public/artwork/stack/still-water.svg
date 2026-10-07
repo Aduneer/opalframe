@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="800" viewBox="0 0 640 800">
+<title>Still Water — an original glass and reflection study</title>
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#d4e5ef"/><stop offset=".55" stop-color="#f4f8f8"/><stop offset="1" stop-color="#bad3dd"/></linearGradient><linearGradient id="sphere" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff" stop-opacity=".9"/><stop offset=".28" stop-color="#bad4df" stop-opacity=".45"/><stop offset=".6" stop-color="#699da9" stop-opacity=".7"/><stop offset=".84" stop-color="#edf9fc" stop-opacity=".85"/><stop offset="1" stop-color="#7fabbc"/></linearGradient><linearGradient id="rim"><stop stop-color="#fff"/><stop offset=".55" stop-color="#a8cbd8"/><stop offset="1" stop-color="#f2fbff"/></linearGradient></defs>
+<rect width="640" height="800" fill="url(#sky)"/>
+<g stroke="#6e9aaa" stroke-opacity=".18" fill="none"><path d="M0 455h640M0 500h640M0 553h640"/><ellipse cx="320" cy="512" rx="240" ry="29"/><ellipse cx="320" cy="512" rx="178" ry="17"/></g>
+<ellipse cx="320" cy="464" rx="121" ry="16" fill="#7f9dab" opacity=".18"/>
+<circle cx="320" cy="309" r="162" fill="url(#sphere)" stroke="url(#rim)" stroke-width="3"/>
+<path d="M204 208C244 144 363 133 428 219" fill="none" stroke="#fff" stroke-width="4" opacity=".8"/><path d="M207 405C272 439 378 425 427 360" fill="none" stroke="#c7e5ee" stroke-width="2"/>
+<ellipse cx="281" cy="261" rx="91" ry="55" transform="rotate(-38 281 261)" fill="#fff" opacity=".16"/>
+<g fill="#345965" font-family="Arial,sans-serif"><text x="42" y="50" font-size="13" letter-spacing="3">OPALFRAME / MATERIAL STUDIES</text><text x="42" y="659" font-size="64" letter-spacing="-4">Still Water.</text><text x="45" y="690" font-size="16">Reflections, without the noise.</text><text x="42" y="756" font-size="12" letter-spacing="2">GLASS / AIR / REFLECTION</text><text x="570" y="756" font-size="12">02</text></g>
+<path d="M40 70h560M40 720h560" stroke="#7e9da7" stroke-opacity=".3"/>
+</svg>

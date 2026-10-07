@@ -1,0 +1,197 @@
+.is-stage {
+  --stage-accent: var(--accent, #aacfff);
+  --stage-text: var(--text, #f1f1f3);
+  --stage-muted: var(--muted, #a1a1aa);
+  --stage-border: var(--line, #343439);
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(190px, 0.31fr) minmax(0, 1fr);
+  color: var(--stage-text);
+  gap: 28px;
+}
+.is-stage-features {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.is-stage-features button {
+  display: flex;
+  gap: 16px;
+  text-align: left;
+  padding: 22px 18px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--stage-muted);
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background 220ms,
+    color 220ms,
+    border-color 220ms;
+}
+.is-stage-features button[aria-selected="true"] {
+  background: var(--stage-selected, var(--raised, #242428));
+  border-color: var(--stage-border);
+  color: var(--stage-text);
+}
+.is-stage-features button:hover {
+  color: var(--stage-text);
+}
+.is-stage-features button:focus-visible,
+.is-stage-body:focus-visible {
+  outline: 2px solid var(--stage-accent);
+  outline-offset: 4px;
+}
+.is-stage-number {
+  font:
+    11px ui-monospace,
+    monospace;
+  padding-top: 4px;
+  color: var(--stage-accent);
+}
+.is-stage-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 550;
+  letter-spacing: -0.02em;
+}
+.is-stage-description {
+  display: block;
+  font-size: 12px;
+  line-height: 1.65;
+  margin-top: 6px;
+  max-width: 175px;
+  color: var(--stage-muted);
+}
+.is-stage-arrow {
+  margin-left: auto;
+  color: var(--stage-accent);
+  opacity: 0;
+}
+.is-stage-features button[aria-selected="true"] .is-stage-arrow {
+  opacity: 1;
+}
+.is-stage-hint {
+  font-size: 11px;
+  margin: 22px 18px 0;
+  color: var(--stage-muted);
+}
+.is-stage-body {
+  min-width: 0;
+  border-radius: 10px;
+}
+.is-stage-scene {
+  position: relative;
+  isolation: isolate;
+}
+.is-stage-focus {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  border: 1px solid var(--stage-accent);
+  border-radius: 5px;
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--stage-accent) 8%, transparent);
+  transition:
+    left 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    top 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.is-stage-focus span {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: var(--stage-accent);
+  border-radius: 1px;
+}
+.is-stage-focus span:nth-child(1) {
+  left: -3px;
+  top: -3px;
+}
+.is-stage-focus span:nth-child(2) {
+  right: -3px;
+  top: -3px;
+}
+.is-stage-focus span:nth-child(3) {
+  left: -3px;
+  bottom: -3px;
+}
+.is-stage-focus span:nth-child(4) {
+  right: -3px;
+  bottom: -3px;
+}
+.is-stage-caption {
+  min-height: 66px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  color: var(--stage-muted);
+  font-size: 12px;
+  padding: 16px 2px 0;
+}
+.is-stage-caption-index {
+  font:
+    10px ui-monospace,
+    monospace;
+  color: var(--stage-accent);
+  white-space: nowrap;
+}
+.is-stage-caption-texts {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+.is-stage-caption-texts > span {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+.is-stage-caption-texts > span[data-active="true"] {
+  visibility: visible;
+}
+.is-stage-caption > span:last-child {
+  margin-left: auto;
+  color: var(--stage-accent);
+}
+.is-stage[data-reduced-motion] *,
+.is-stage[data-reduced-motion] *::before {
+  transition: none !important;
+}
+@media (max-width: 680px) {
+  .is-stage {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .is-stage-features {
+    flex-direction: row;
+    gap: 4px;
+  }
+  .is-stage-features button {
+    flex: 1;
+    justify-content: center;
+    padding: 13px 8px;
+    gap: 8px;
+  }
+  .is-stage-description,
+  .is-stage-hint,
+  .is-stage-arrow {
+    display: none;
+  }
+  .is-stage-label {
+    font-size: 12px;
+  }
+  .is-stage-number {
+    font-size: 9px;
+  }
+  .is-stage-caption {
+    font-size: 11px;
+    gap: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .is-stage * {
+    transition: none !important;
+  }
+}

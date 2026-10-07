@@ -1,0 +1,104 @@
+.is-lens {
+  --lens-accent: var(--accent, #aacfff);
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--line, #343439);
+  background: #1b1b20;
+}
+.is-lens-layer {
+  isolation: isolate;
+  z-index: 0;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.is-lens-after {
+  z-index: 1;
+  clip-path: inset(0 calc(100% - var(--lens-position)) 0 0);
+}
+.is-lens-tag {
+  position: absolute;
+  top: 18px;
+  padding: 6px 9px;
+  border-radius: 3px;
+  background: #15151a;
+  color: #f4f4f5;
+  font:
+    9px ui-monospace,
+    monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 2;
+  pointer-events: none;
+}
+.is-lens-before-tag {
+  right: 18px;
+}
+.is-lens-after-tag {
+  left: 18px;
+}
+.is-lens-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--lens-position);
+  width: 1px;
+  background: var(--lens-accent);
+  z-index: 3;
+  pointer-events: none;
+}
+.is-lens-divider span {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--lens-handle, #f7faff);
+  color: var(--lens-handle-ink, #304b68);
+  border: 1px solid #a5b8cf;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    0 2px 8px #223f5a24,
+    inset 0 1px 0 #fff;
+}
+.is-lens-input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 4;
+  cursor: ew-resize;
+  touch-action: pan-y;
+  appearance: none;
+  background: transparent;
+}
+.is-lens-input::-webkit-slider-thumb {
+  appearance: none;
+  width: 0;
+  height: 100%;
+}
+.is-lens-input::-moz-range-thumb {
+  border: none;
+  width: 0;
+  height: 100%;
+}
+.is-lens:focus-within {
+  outline: 2px solid var(--lens-accent);
+  outline-offset: 4px;
+}
+.is-lens-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

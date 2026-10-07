@@ -1,0 +1,23 @@
+name: Showcase submission
+description: Show how you made a component your own.
+body:
+  - type: input
+    id: link
+    attributes:
+      label: Your project URL
+    validations:
+      required: true
+  - type: textarea
+    id: story
+    attributes:
+      label: What did you build?
+      description: Name the components, share a preview, and describe your changes.
+    validations:
+      required: true
+  - type: checkboxes
+    id: permission
+    attributes:
+      label: Permission
+      options:
+        - label: You may feature this project and its submitted preview in Opalframe documentation or social posts with attribution.
+          required: true

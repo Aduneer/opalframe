@@ -1,0 +1,48 @@
+name: Bug report
+description: Report an interaction, installation, or accessibility problem.
+title: "Bug: "
+body:
+  - type: input
+    id: component
+    attributes:
+      label: Component or site feature
+      placeholder: Focus Stack, registry installation, or studio opening
+    validations:
+      required: true
+  - type: dropdown
+    id: location
+    attributes:
+      label: Where does it happen?
+      options:
+        - Copied or installed component in my project
+        - Opalframe gallery or docs
+        - Local development or recording studio
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include browser/version, OS or device, React version, and framework. For CLI problems, include Node and npm versions.
+      placeholder: Chrome, Android phone, React 19, Vite; touch input
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps or minimal reproduction
+      description: Include the affected URL or a small code example. For installation issues, include the exact command and error output. Remove tokens or other private data.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+      description: Explain what you expected and what happened instead. Screenshots or short clips help with layout and motion issues.
+    validations:
+      required: true
+  - type: textarea
+    id: interaction
+    attributes:
+      label: Interaction details (optional)
+      description: For interaction issues, note pointer/touch/keyboard input, theme, viewport size, reduced motion, and any screen reader in use.

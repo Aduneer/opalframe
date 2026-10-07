@@ -1,0 +1,18 @@
+name: Component request
+description: Propose a useful interaction worth keeping around.
+title: "Component: "
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Where would you use it?
+      description: Describe the real website or interaction it improves.
+    validations:
+      required: true
+  - type: textarea
+    id: inspiration
+    attributes:
+      label: What makes it special?
+      description: Share sketches, references, or a recording. Explain the detail rather than asking for a clone.
+    validations:
+      required: true

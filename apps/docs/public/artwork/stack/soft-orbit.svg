@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="800" viewBox="0 0 640 800">
+<title>Soft Orbit — an original silver sculpture study</title>
+<defs><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#f3f7fc"/><stop offset="1" stop-color="#c7d9ed"/></linearGradient><linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbfdff"/><stop offset=".28" stop-color="#9cbbd7"/><stop offset=".5" stop-color="#eef7ff"/><stop offset=".67" stop-color="#6e91b2"/><stop offset="1" stop-color="#e9f3fc"/></linearGradient><linearGradient id="glass"><stop stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#aacbeb" stop-opacity=".3"/></linearGradient></defs>
+<rect width="640" height="800" fill="url(#paper)"/>
+<g stroke="#8da9c5" opacity=".25" fill="none"><path d="M40 70h560M40 720h560"/><circle cx="320" cy="330" r="238"/><path d="M320 72v520M80 330h480"/></g>
+<g font-family="Arial,sans-serif" fill="#3a5877"><text x="42" y="50" font-size="13" letter-spacing="3">OPALFRAME / FORM STUDIES</text><text x="42" y="756" font-size="12" letter-spacing="2">LIGHT / SILVER / SPACE</text><text x="570" y="756" font-size="12">01</text></g>
+<ellipse cx="330" cy="568" rx="166" ry="17" fill="#567da3" opacity=".14"/>
+<g transform="translate(320 330)"><ellipse rx="195" ry="91" transform="rotate(-42)" fill="none" stroke="url(#silver)" stroke-width="56"/><ellipse rx="186" ry="83" transform="rotate(42)" fill="none" stroke="url(#glass)" stroke-width="42"/><ellipse rx="198" ry="95" transform="rotate(42)" fill="none" stroke="#f8fcff" stroke-opacity=".8" stroke-width="2"/><path d="M-135-145C-25-220 125-180 191-82" fill="none" stroke="#fff" stroke-width="3" opacity=".7"/></g>
+<text x="42" y="659" fill="#254564" font-family="Arial,sans-serif" font-size="64" letter-spacing="-4">Soft Orbit.</text><text x="45" y="690" fill="#5a7896" font-family="Arial,sans-serif" font-size="16">A little light. A new perspective.</text>
+</svg>
