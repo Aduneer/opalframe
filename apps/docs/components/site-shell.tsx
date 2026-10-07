@@ -87,7 +87,9 @@ export function Footer() {
         opalframe.
       </Link>
       <p>Made to be made your own.</p>
-      <span>FIRST EDITION / 2026</span>
+      <a className="text-link" href="https://github.com/Aduneer/opalframe">
+        View on GitHub <ArrowUpRight size={12} aria-hidden="true" />
+      </a>
     </footer>
   );
 }

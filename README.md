@@ -4,11 +4,11 @@
 
 ![Select the code. See the detail it makes.](artifacts/clips/interactive-code-window-16x9.gif)
 
-[Components](#components) · [Quickstart](#quickstart) · [Recordings](artifacts/clips/README.md) · [Contributing](CONTRIBUTING.md) · [MIT](LICENSE)
+[Live demo](https://aduneer.github.io/opalframe/) · [GitHub](https://github.com/Aduneer/opalframe) · [Components](#components) · [Quickstart](#quickstart) · [Recordings](artifacts/clips/README.md) · [Contributing](CONTRIBUTING.md) · [MIT](LICENSE)
 
 Source you own, useful props, and scoped CSS. React is the only component runtime dependency. Explore live previews, copy individual files, or install through the official shadcn registry.
 
-The planned repository is **Aduneer/opalframe**. The demo will publish at [aduneer.github.io/opalframe](https://aduneer.github.io/opalframe/) once the repository and Pages deployment exist. Until then, use the local quickstart; [deployment instructions](DEPLOYMENT.md) cover the handoff.
+Explore the [live collection](https://aduneer.github.io/opalframe/), or run it locally with the quickstart below. [Deployment instructions](DEPLOYMENT.md) cover the GitHub Pages setup.
 
 ## Components
 
@@ -42,18 +42,18 @@ Open **Customize** in a preview to try accents, widths, and Soft/Square finishes
 
 ### Install with shadcn
 
-With the local site running, run this from your own React project with shadcn configured:
+Run this from your own React project with shadcn configured:
 
 ```sh
-npx shadcn@latest add http://localhost:3000/r/comparison-lens.json
+npx shadcn@latest add https://aduneer.github.io/opalframe/r/comparison-lens.json
 ```
 
 The installer copies `comparison-lens.tsx` and `comparison-lens.css` into your UI directory. For another component, replace `comparison-lens` with `interactive-code-window`, `expandable-dock`, `product-stage`, `release-rail`, or `focus-stack`.
 
-After Pages publication, the same command uses the public registry:
+When developing the registry locally, use the running local site instead:
 
 ```sh
-npx shadcn@latest add https://aduneer.github.io/opalframe/r/comparison-lens.json
+npx shadcn@latest add http://localhost:3000/r/comparison-lens.json
 ```
 
 The docs Installation buttons include the repository path automatically.
@@ -159,7 +159,7 @@ packages/components/    Portable TypeScript and scoped CSS
 apps/docs/             Gallery, docs, registry, and recording studio
 scripts/               Registry generation, exports, and captures
 tests/                Browser interaction and accessibility checks
-artifacts/             Original scenes and finished recordings
+artifacts/             Finished screenshots, recordings, and audio notes
 ```
 
 ```sh
@@ -175,7 +175,7 @@ npm run build:pages
 npm run test:pages
 ```
 
-Registry files are generated before dev/build. Edit component source rather than generated JSON. Browser checks require Playwright Chromium or `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`. See [DEPLOYMENT.md](DEPLOYMENT.md) for Pages configuration and the remaining publication checks.
+Registry files are generated before dev/build. Edit component source rather than generated JSON. Browser checks require Playwright Chromium or `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`. See [DEPLOYMENT.md](DEPLOYMENT.md) for Pages configuration and the publication checks.
 
 </details>
 

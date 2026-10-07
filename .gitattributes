@@ -3,6 +3,5 @@
 *.gif binary
 *.webp binary
 *.mp4 binary
-*.m4a binary
 *.flac binary
-*.blend binary
+*.webm binary

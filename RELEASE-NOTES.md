@@ -1,4 +1,4 @@
-# First edition — publication draft
+# First edition — 2026-10-07
 
 Opalframe is a collection of six React interactions distributed as source you
 copy into your own project. Each study includes TypeScript props, scoped CSS,
@@ -34,11 +34,15 @@ Source and original art/music are MIT licensed. [Asset credits](ASSET-CREDITS.md
 retain the Lucide/Feather notices for demo icons. Avery Studio, Northbound, Halo,
 and the example activity are fictional content.
 
-## Publication handoff
+## Try it
 
-The selected repository is `Aduneer/opalframe`; it has not been created or
-published by this preparation. The planned demo is
-`https://aduneer.github.io/opalframe/`. Follow [DEPLOYMENT.md](DEPLOYMENT.md),
-verify the live site and a fresh public-registry installation, then replace
-this draft heading with the actual release information. No version or tag is
-assigned here.
+Explore the [live collection](https://aduneer.github.io/opalframe/) or get the
+[source on GitHub](https://github.com/Aduneer/opalframe). Install a study from your
+own React project with shadcn configured:
+
+```sh
+npx shadcn@latest add https://aduneer.github.io/opalframe/r/focus-stack.json
+```
+
+This edition is distributed as copied source, with no npm runtime package.
+[Deployment notes](DEPLOYMENT.md) record the publication and verification.
