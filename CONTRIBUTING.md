@@ -54,8 +54,22 @@ older Checks runs on the same branch.
 
 If port 3000 is occupied, set `OPALFRAME_TEST_PORT=3100` when running browser tests.
 
-Test one browser file with `npx playwright test tests/gallery.spec.ts`, or a named case with `--grep`. For routing, public assets, or installation URLs, also run `npm run build:pages` and `npm run test:pages`; GitHub Pages serves a static export under the repository path. [DEPLOYMENT.md](DEPLOYMENT.md) explains that setup.
+Test one browser file with `npx playwright test tests/gallery.spec.ts`, or a named case with `--grep`. For routing, public assets, or installation URLs, also run `npm run build:pages` and `npm run test:pages`; GitHub Pages serves a static export under the repository path.
 
 Keep changes focused. Describe the problem and resulting behavior, show a preview where useful, and state what you actually verified. Do not promise compatibility, adoption, or performance you have not checked. The component sources currently require only React; keep that portability.
 
 Do not commit local configuration, agent instructions, working notes, build directories, browser reports, or raw render/recording intermediates. Keep finished review assets and the web-ready artwork/audio. Blender scenes, intermediate renders, and audio production masters stay local; the procedural reproduction scripts remain public. The public [roadmap](ROADMAP.md) describes the collection's direction. Contributions are provided under the repository's [MIT license](LICENSE); third-party assets retain their own terms and must include credits.
+
+## Static-site preview
+
+```sh
+npm run build:pages
+npm run preview:pages
+npm run test:pages
+```
+
+The local export runs at `http://localhost:3001/opalframe/`. The build script
+uses `GITHUB_REPOSITORY` for GitHub Pages, or the public overrides documented in
+`.env.example`. Pages uses GitHub Actions as its deployment source. Changing the
+base path requires a rebuild. Rebuild with `npm run build` before using
+`npm start` after a static export.

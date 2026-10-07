@@ -2,7 +2,7 @@
 
 Original procedural ambient composition authored for Opalframe with Codex. Copyright (c) 2026 Opalframe contributors. No external tracks, samples, voices, or field recordings are used.
 
-The 72-second stereo FLAC loop is exported from the unfaded master at a quiet −29 LUFS. Source: `scripts/audio/render-audition.py` in the Opalframe repository. Audition, lossless master, measurements, and reproduction instructions: `artifacts/audio/`.
+The 72-second stereo FLAC loop is exported from the unfaded master at a quiet −29 LUFS. Source: `scripts/audio/render-audition.py` in the Opalframe repository. Reproduction instructions: `scripts/audio/README.md`. Production outputs are generated locally and are not included in the repository.
 
 Composition, source, and exports are licensed under MIT:
 

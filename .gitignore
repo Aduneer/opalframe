@@ -21,6 +21,8 @@ CLAUDE.md
 /TODO.md
 /DESIGN-PLAN.md
 /NAMING.md
+/DEPLOYMENT.md
+/RELEASE-NOTES.md
 
 # Logs, caches, browser reports, and editor/OS files
 *.log
@@ -37,10 +39,19 @@ blob-report/
 # Keep web assets and finished presentation clips; omit production sources
 artifacts/clips/.raw/
 artifacts/presentation/.raw/
-/artifacts/blender/
-/artifacts/audio/*
-!/artifacts/audio/README.md
-!/artifacts/audio/quiet-01-analysis.json
+# Publish only the README hero and indexed demo recordings.
+/artifacts/*
+!/artifacts/hero.png
+!/artifacts/clips/
+!/artifacts/presentation/
+/artifacts/presentation/*
+!/artifacts/presentation/README.md
+!/artifacts/presentation/light-response-*.mp4
+!/artifacts/presentation/light-response-*.gif
+!/artifacts/presentation/light-response-*.png
+!/artifacts/presentation/studio-opening-*.mp4
+!/artifacts/presentation/studio-opening-*.gif
+!/artifacts/presentation/studio-opening-*.png
 __pycache__/
 
 # Local credentials and editor state

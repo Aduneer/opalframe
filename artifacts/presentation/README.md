@@ -1,6 +1,6 @@
 # Site presentation
 
-Current launch captures of the accepted six-study gallery. These effects belong to the site; they are not included in copied components. Recordings are silent.
+Recordings of the six-study gallery. These effects belong to the site; they are not included in copied components. Recordings are silent.
 
 | Scene                                  | Charcoal                                                                | Pearl                                                             |
 | -------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------- |
@@ -13,7 +13,8 @@ The export trims loading frames by matching the captured scene to its poster,
 then fits the complete presentation action into eight seconds. Playback timing
 is normalized for the clip; the live opening remains driven by native scrolling.
 
-Desktop/mobile stills in both themes use `opening-`, `opening-mid-`, and `opening-clear-` prefixes. `desktop-`/`mobile-` show the reduced-motion composition. Docs, installation reading, lower-gallery Focus Stack, studio backdrops, and Field Notes outline detail have dedicated stills.
+Detailed review screenshots and performance measurements are local outputs and
+are excluded from Git.
 
 The presentation exporter requires ffmpeg and ffprobe on PATH. Run `npm run capture:presentation` for stills and `npm run record:presentation` for these four sets, with the local site running. `npm run record:launch` also refreshes the component recordings.
 

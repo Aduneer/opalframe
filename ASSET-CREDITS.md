@@ -2,8 +2,8 @@
 
 Opalframe source, original artwork, and original music use the repository's [MIT license](LICENSE), copyright 2026 Opalframe contributors. Keep the license notice when redistributing.
 
-- **Glass ribbon:** original procedural Blender geometry, materials, camera, and studio lights. No external models, textures, or HDR environments. Blender scenes and intermediate renders are kept locally and excluded from Git; [reproduction instructions](scripts/artwork/README.md) describe export and the CPU/GPU rendering history.
-- **Quiet 01:** original procedural composition authored for Opalframe with Codex. No external tracks, samples, voices, or field recordings. [Source and reproduction notes](artifacts/audio/README.md) are included; production masters and auditions stay local; [web-asset credits](apps/docs/public/audio/CREDITS.md) accompany the stereo FLAC used by the optional player.
+- **Glass ribbon:** original procedural Blender geometry, materials, camera, and studio lights. No external models, textures, or HDR environments. Blender scenes and intermediate renders are kept locally and excluded from Git; [reproduction instructions](scripts/artwork/README.md) describe how to regenerate the web exports.
+- **Quiet 01:** original procedural composition authored for Opalframe with Codex. No external tracks, samples, voices, or field recordings. [Source and reproduction notes](scripts/audio/README.md) are included; production masters and auditions stay local; [web-asset credits](apps/docs/public/audio/CREDITS.md) accompany the stereo FLAC used by the optional player.
 - **Screenshots and recordings:** captured from Opalframe's actual demos with Playwright/ffmpeg. Preserve the icons' notices below when redistributing imagery containing them. Release Rail depicts simulated releases.
 - **Docs/demo icons:** [Lucide](https://lucide.dev), through `lucide-react`. The portable component sources do not import it; consumer-supplied dock icons are independent. Lucide and its Feather-derived portions retain the ISC/MIT notices below, reproduced from the installed package's license.
 

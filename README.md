@@ -8,7 +8,7 @@
 
 Source you own, useful props, and scoped CSS. React is the only component runtime dependency. Explore live previews, copy individual files, or install through the official shadcn registry.
 
-Explore the [live collection](https://aduneer.github.io/opalframe/), or run it locally with the quickstart below. [Deployment instructions](DEPLOYMENT.md) cover the GitHub Pages setup.
+Explore the [live collection](https://aduneer.github.io/opalframe/), or run it locally with the quickstart below.
 
 ## Components
 
@@ -141,7 +141,7 @@ Recording requires `ffmpeg` and `ffprobe` on PATH. `--ratio` accepts `16/9`, `1/
 
 Use `--preset alternate` with `expandable-dock` or `interactive-code-window` to record their second examples. Alternate exports include `-alternate` in the filename, preserving the original clips.
 
-Original [Blender artwork](scripts/artwork/README.md) and [audio](artifacts/audio/README.md) have separate reproducible sources and export instructions.
+Original [Blender artwork](scripts/artwork/README.md) and [audio](scripts/audio/README.md) have separate reproducible sources and export instructions.
 
 </details>
 
@@ -159,7 +159,7 @@ packages/components/    Portable TypeScript and scoped CSS
 apps/docs/             Gallery, docs, registry, and recording studio
 scripts/               Registry generation, exports, and captures
 tests/                Browser interaction and accessibility checks
-artifacts/             Finished screenshots, recordings, and audio notes
+artifacts/             README hero and indexed demo recordings
 ```
 
 ```sh
@@ -175,7 +175,7 @@ npm run build:pages
 npm run test:pages
 ```
 
-Registry files are generated before dev/build. Edit component source rather than generated JSON. Browser checks require Playwright Chromium or `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`. See [DEPLOYMENT.md](DEPLOYMENT.md) for Pages configuration and the publication checks.
+Registry files are generated before dev/build. Edit component source rather than generated JSON. Browser checks require Playwright Chromium or `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`. See [CONTRIBUTING.md](CONTRIBUTING.md#static-site-preview) for the static-site preview.
 
 </details>
 

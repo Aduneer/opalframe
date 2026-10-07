@@ -4,8 +4,8 @@ The first edition focuses on six portable React studies: Interactive Code Window
 
 ## First edition
 
-- Maintain the accepted glass studio opening, gallery, and docs in Pearl and Charcoal; complete the final mobile and deployed-site review before announcing.
-- Publish the demo and registry on GitHub Pages and verify installation from the public URL.
+- Maintain the glass studio opening, gallery, and docs in Pearl and Charcoal.
+- Keep installation from the public registry reliable as the collection evolves.
 - Keep examples complete, source copying straightforward, and component dependencies small.
 - Let visitors try accents, widths, and finishes in the live previews and copy scoped CSS into their projects.
 - Show different content with Studio/Travel journal Dock examples and Field Notes/Product detail Code Window walkthroughs on the homepage, in docs, and in recording mode.
